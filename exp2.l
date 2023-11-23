@@ -1,10 +1,6 @@
 %{
 
 /*
-Name: Rohaan Renu John
-Class: CS1-S7
-Roll Number: 54
-Subject: CD Lab
 Program: Lexical Analyzer using Lex Tool
 
 Three Parts of the Lex File: Declaration, Translation Rules & Auxiliary Procedure
