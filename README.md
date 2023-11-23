@@ -16,7 +16,7 @@ gcc lex.yy.c
 
 ***yacc program:***
 
-in replit:
+*in replit:*
 
 yacc -d filename.y
 
@@ -26,7 +26,7 @@ gcc lex.yy.c y.tab.c -lfl
 
 ./a.out
 
-in pc:
+*in pc:*
 
 yacc -d filename.y
 
