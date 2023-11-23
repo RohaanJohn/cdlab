@@ -1,4 +1,5 @@
 %{
+  // Calculator
   #include "y.tab.h"
   extern yylval;
 %}
@@ -16,4 +17,3 @@
 .                { return yytext[0]; }
 
 %%
-
