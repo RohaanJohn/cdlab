@@ -1,37 +1,13 @@
-**Commands to run the respective files:**
+**Programs:**
 
-***c program:***
+Exp1: Lexical Analyzer using C
 
->gcc filename.c
+Exp2: Lexical Analyzer using Lex Tool
 
->./a.out
+Exp3: Recursive Descent Parser
 
-***lex program:***
+Exp4: Shift Reduce Parser 
 
->flex filename.l
+Exp5: Recognize a valid arithmetic expression using Yacc
 
->gcc lex.yy.c
-
->./a.out
-
-***yacc program:***
-
-*in replit:*
-
->yacc -d filename.y
-
->flex filename.l
-
->gcc lex.yy.c y.tab.c -lfl
-
->./a.out
-
-*in pc:*
-
->yacc -d filename.y
-
->lex filename.l
-
->cc lex.yy.c y.tab.c -ll
-
->./a.out
+Exp6: Calculator using Yacc
