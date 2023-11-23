@@ -1,4 +1,5 @@
 %{
+  // Recognize a valid arithmetic expression
   #include "y.tab.h"
   extern yylval;
 %}
