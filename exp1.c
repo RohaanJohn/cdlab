@@ -1,4 +1,4 @@
-//Program: Lexical Analyzer using Lex Tool
+//Program: Lexical Analyzer using C
 
 #include <ctype.h>
 #include <stdio.h>
