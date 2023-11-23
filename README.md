@@ -12,7 +12,7 @@
 
 >gcc lex.yy.c
 
-./a.out
+>./a.out
 
 ***yacc program:***
 
