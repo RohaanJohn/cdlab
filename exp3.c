@@ -1,10 +1,4 @@
-/*
-Name: Rohaan Renu John
-Class: CS1-S7
-Roll Number: 54
-Subject: CD Lab
-Program: Recursive Descent Parser
-*/
+//Program: Recursive Descent Parser
 
 #include <stdio.h>
 #include <stdlib.h>

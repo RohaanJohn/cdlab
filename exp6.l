@@ -1,5 +1,6 @@
 %{
-  // Calculator
+  //Program: Calculator using Yacc
+  
   #include "y.tab.h"
   extern yylval;
 %}

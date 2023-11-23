@@ -1,5 +1,6 @@
 %{
-// Calculator
+//Program: Calculator using Yacc
+
 #include <stdio.h>
 %}
 %token NUMBER ID

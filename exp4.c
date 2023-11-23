@@ -1,10 +1,4 @@
-/*
-Name: Rohaan Renu John
-Class: CS1-S7
-Roll Number: 54
-Subject: CD Lab
-Program: Shift Reduce Parser
-*/
+//Program: Shift Reduce Parser
 
 #include <stdbool.h>
 #include <stdio.h>

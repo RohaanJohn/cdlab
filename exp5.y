@@ -1,5 +1,6 @@
 %{
-// Recognize a valid arithmetic expression
+//Program: Recognize a valid arithmetic expression using Yacc
+
 #include <stdio.h>
 %}
 %token NUMBER ID
