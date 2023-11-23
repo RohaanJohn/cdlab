@@ -1,4 +1,5 @@
 %{
+// Calculator
 #include <stdio.h>
 %}
 %token NUMBER ID
@@ -47,5 +48,5 @@ Output:
 Enter the expression
 5^3
 
-Result = 125
+Expression is valid and Result = 125
 */
