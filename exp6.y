@@ -49,5 +49,5 @@ Output:
 Enter the expression
 5^3
 
-Expression is valid and Result = 125
+Result = 125
 */
