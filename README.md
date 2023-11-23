@@ -2,15 +2,15 @@
 
 ***c program:***
 
-gcc filename.c
+>gcc filename.c
 
-./a.out
+>./a.out
 
 ***lex program:***
 
-flex filename.l
+>flex filename.l
 
-gcc lex.yy.c
+>gcc lex.yy.c
 
 ./a.out
 
@@ -18,19 +18,20 @@ gcc lex.yy.c
 
 *in replit:*
 
-yacc -d filename.y
+>yacc -d filename.y
 
-flex filename.l
+>flex filename.l
 
-gcc lex.yy.c y.tab.c -lfl
+>gcc lex.yy.c y.tab.c -lfl
 
-./a.out
+>./a.out
 
 *in pc:*
 
-yacc -d filename.y
+>yacc -d filename.y
 
-lex filename.l
+>lex filename.l
 
-cc lex.yy.c y.tab.c -ll
-./a.out
+>cc lex.yy.c y.tab.c -ll
+
+>./a.out
