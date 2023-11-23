@@ -1,11 +1,3 @@
-/*
-Name: Rohaan Renu John
-Class: CS1-S7
-Roll Number: 54
-Subject: CD Lab
-Program: Lexical Analyzer using C
-*/
-
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
