@@ -1,4 +1,5 @@
 %{
+// Recognize a valid arithmetic expression
 #include <stdio.h>
 %}
 %token NUMBER ID
@@ -39,7 +40,7 @@ int main() {
 
 /* For printing the error messages */
 int yyerror(char *s){
-       printf("\n Expression is invalid\n");
+       printf("\nExpression is invalid\n");
 }
 
 /*
