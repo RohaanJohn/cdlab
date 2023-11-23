@@ -12,7 +12,7 @@
 %right '^'
 %%
 E : T  {
-                                   printf("\nExpression is valid\n", $$);
+                                   printf("\nExpression is valid\n");
                                    return 0;
                         }
 
