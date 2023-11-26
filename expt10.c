@@ -1,5 +1,4 @@
 // First and Follow
-// Predictive Parser
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
