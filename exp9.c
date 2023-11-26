@@ -1,82 +1,130 @@
-// Intermedate Code Generator
+
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-#define MAX 100
+char input[100];
+int ip = 0;
 
-char input[MAX];
-char *ip = input;
+char postfix[100];
+int pi = 0;
+
+char stack[100];
+int tos = -1;
+
+char ti = '1';
+
+void push(char c) {
+	stack[++tos] = c;
+}
+
+char pop() {
+	return stack[tos--];
+}
+
+char top() {
+	return stack[tos];
+}
+
+int prec(char c) {
+	switch (c) {
+		case '(':
+			return 0;
+	
+		case '/':
+		case '*':
+			return 3;
+	
+		case '+':
+		case '-':
+			return 2;
+			
+		case ')':
+			return 1;
+	}
+	
+	return -1;
+} 
+
+int isop(char c) {
+	return prec(c) != -1;
+}
 
 int main() {
-  printf("Enter input string:\n");
-  scanf("%s", ip);
-  // post fix expression and its pointer
-  char post[MAX];
-  char *p = post;
-  // stack and top
-  char stack[MAX];
-  int top = -1;
-  char ch = 'p';
-  if (input[1] == '=') {
-    ip += 2;
-  }
-  printf("\nIntermediate Code:\n");
-  while (*ip != '\0') {
-    if ((*ip >= 'a' && *ip <= 'z') || (*ip >= 'A' && *ip <= 'Z')) {
-      *(p++) = *ip;
-    } else if (*ip == '(') {
-      stack[++top] = *ip;
-    } else if (*ip == ')') {
-      while (stack[top] != '(') {
-        *(p++) = stack[top--];
-        printf("%c = %c%c%c\n", ch++, *(p - 3), *(p - 1), *(p - 2));
-        *(p - 3) = ch - 1;
-        p -= 2;
-      }
-      top--;
-    } else if (*ip == '+' || *ip == '-') {
-      if (stack[top] == '*' || stack[top] == '/') {
-        *(p++) = stack[top--];
-        printf("%c = %c%c%c\n", ch++, *(p - 3), *(p - 1), *(p - 2));
-        *(p - 3) = ch - 1;
-        p -= 2;
-        stack[++top] = *ip;
-      } else {
-        stack[++top] = *ip;
-      }
-    } else {
-      if (stack[top] == '*' || stack[top] == '/') {
-        *(p++) = stack[top--];
-        *(p - 3) = ch - 1;
-        p -= 2;
-        stack[++top] = *ip;
-      } else {
-        stack[++top] = *ip;
-      }
-    }
-    stack[top + 1] = '\0';
-    ip++;
-  }
-  while (top >= 0) {
-    *(p++) = stack[top--];
-    printf("%c = %c%c%c\n", ch++, *(p - 3), *(p - 1), *(p - 2));
-    *(p - 3) = ch - 1;
-    p -= 2;
-  }
-  if (input[1] == '=') {
-    printf("%c = %c\n", input[0], post[0]);
-  }
-  return 0;
+	printf("enter string: ");
+	scanf("%s", input);
+	
+	int len = strlen(input);
+	input[len++] = ')';
+	
+	push('(');
+	
+	while (ip < len) {
+		char ic = input[ip];
+	
+		if (isop(ic)) {
+			while (ic != '(' && tos > -1 && prec(ic) <= prec(top())) {
+				char c = pop();
+				postfix[pi++] = c;
+			}
+			ic == ')' ? pop() : push(ic);
+		}
+		else {
+			postfix[pi++] = ic;
+		}
+		ip++;
+	}
+	
+	int ci = 0;
+	
+	printf("\nIntermediate code\t\t\top\top1\top2\tres\n");
+	
+	while (ci < pi) {
+		char pc = postfix[ci];
+	
+		if (isop(pc)) {
+			char b = pop();
+			char a = pop();
+			
+			printf("t%c = ", ti);
+			isdigit(a) ? printf("t%c", a) : printf("%c", a);
+			printf(" %c ", pc);
+			isdigit(b) ? printf("t%c", b) : printf("%c", b);
+			
+			printf("\t\t\t\t");			
+			printf("%c\t", pc);
+			isdigit(a) ? printf("t%c\t", a) : printf("%c\t", a);
+			isdigit(b) ? printf("t%c\t", b) : printf("%c\t", b);
+			printf("t%c\n", ti);
+			
+			printf("\n");
+			
+			push(ti);
+			
+			ti++;
+		}
+		
+		else {
+			push(pc);
+		}
+		
+		ci++;
+	}
+	
+	return 0;
 }
+
 
 /*
 OUTPUT
-Enter input string:
-e=a+(b+c*d)
+    
+enter string: (a+b)*(b+c)
 
-Intermediate Code:
-p = c*d
-q = b+p
-r = a+q
-e = r
+Intermediate code                       op      op1     op2     res
+t1 = a + b                              +       a       b       t1
+
+t2 = b + c                              +       b       c       t2
+
+t3 = t1 * t2                            *       t1      t2      t3
+
 */
