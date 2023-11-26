@@ -1,6 +1,4 @@
-// 5. Intermediate Code Generator
-// Amal Joe R S, Roll No. 64, S7 CS2
-
+//Intermediate Code Generator
 #include <stdio.h>
 #include <string.h>
 
