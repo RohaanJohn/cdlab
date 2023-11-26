@@ -45,6 +45,7 @@ int main() {
     char *temp = getFirst(prod[i].lhs);
     printf("first of %c = %s\n", prod[i].lhs, temp);
   }
+  printf("\n");
   for (int i = 0; i < 26; i++) {
     done[i] = false;
   }
