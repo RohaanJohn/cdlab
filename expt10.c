@@ -1,4 +1,5 @@
 // First and Follow
+// Predictive Parser
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -55,104 +56,6 @@ int main() {
     done[prod[i].lhs - 65] = true;
     char *temp = getFollow(prod[i].lhs);
     printf("follow of %c = %s\n", prod[i].lhs, temp);
-  }
-  printf("\nEnter input string:\n");
-  scanf("%s", ip);
-  printf("\n");
-  strcat(ip, "$");
-  // predictive parser
-  char stack[MAX];
-  int top = -1;
-  int ipPointer = 0;
-  stack[++top] = prod[0].lhs;
-  while (top >= 0 && ipPointer < strlen(ip)) {
-    // printf("Input: %s, Stack: ", ip + ipPointer);
-    // for (int i = 0; i <= top; i++)
-    // {
-    // 	printf("%c ", stack[i]);
-    // }
-    // printf("\n");
-    char cStack = stack[top--];
-    char cInput = ip[ipPointer];
-    if (cStack == cInput) {
-      ipPointer++;
-      continue;
-    }
-    if (cStack > 'A' && cStack < 'Z') {
-      bool found = false;
-
-      for (int i = 0; i < prodNum; i++) {
-        if (prod[i].lhs != cStack) {
-          continue;
-        }
-        if (prod[i].rhs[0] > 'A' && prod[i].rhs[0] < 'Z') {
-
-          char *first = getFirst(prod[i].rhs[0]);
-          for (int j = 0; j < strlen(first); j++) {
-            if (first[j] == cInput) {
-              found = true;
-              for (int k = strlen(prod[i].rhs) - 1; k >= 0; k--) {
-                stack[++top] = prod[i].rhs[k];
-              }
-              printf("%c->%s\n", prod[i].lhs, prod[i].rhs);
-              break;
-            }
-          }
-          if (found)
-            break;
-          if (strchr(first, '#') != NULL) {
-            char *follow = getFollow(prod[i].rhs[0]);
-            for (int j = 0; j < strlen(follow); j++) {
-              if (follow[j] == cInput) {
-                found = true;
-                for (int k = strlen(prod[i].rhs) - 1; k >= 0; k--) {
-                  stack[++top] = prod[i].rhs[k];
-                }
-                printf("%c->%s\n", prod[i].lhs, prod[i].rhs);
-                break;
-              }
-            }
-          }
-          if (found)
-            break;
-          printf("\nError parsing string.\n");
-          return 1;
-        } else {
-          if (prod[i].rhs[0] == cInput) {
-            for (int k = strlen(prod[i].rhs) - 1; k >= 0; k--) {
-              stack[++top] = prod[i].rhs[k];
-            }
-            printf("%c->%s\n", prod[i].lhs, prod[i].rhs);
-            break;
-          }
-        }
-        if (!found && prod[i].rhs[0] == '#') {
-          printf("%c->%s\n", prod[i].lhs, prod[i].rhs);
-        }
-      }
-    } else {
-      printf("\nError parsing string.\n");
-      return 1;
-    }
-  }
-  while (top >= 0) {
-    char cStack = stack[top];
-    bool found = false;
-    for (int i = 0; i < prodNum; i++) {
-      if (cStack == prod[i].lhs && prod[i].rhs[0] == '#') {
-        top--;
-        found = true;
-        break;
-      }
-    }
-    if (!found)
-      break;
-  }
-  if (top != -1 || ip[ipPointer] != '$') {
-    printf("\nError parsing string.\n");
-    return 1;
-  } else {
-    printf("\nString parsed successfully.\n");
   }
   return 0;
 }
@@ -243,3 +146,28 @@ char *follow(char ch) {
   }
   return s;
 }
+
+/*
+Output:
+
+Grammar:
+E->TR
+R->+TR
+R->#
+T->FY
+Y->*FY
+Y->#
+F->i
+F->(E)
+
+first of E = i(
+first of R = +#
+first of T = i(
+first of Y = *#
+first of F = i(
+follow of E = $)
+follow of R = $)
+follow of T = +$)
+follow of Y = +$)
+follow of F = *+$)
+*/
