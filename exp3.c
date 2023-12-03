@@ -1,4 +1,4 @@
-//Program: Recursive Descent Parser
+// Program: Recursive Descent Parser
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,18 +7,40 @@
 char str[100];
 int i = 0, error = 0;
 
-void A();
-void B();
-void S();
-
 /*
 Grammar:
-  L = {a^2n b^m | n,m > 0}
+  L = {a^2n b^m | n,m >= 0}
 
   S -> aaAB
   A -> aaA | ε
-  B -> bB |
+  B -> bB | ε
 */
+
+void A() {
+  if (str[i] == 'a' && str[i + 1] == 'a') {
+    i += 2;
+    A();
+  }
+}
+
+void B() {
+  if (str[i] == 'b') {
+    i++;
+    B();
+  }
+}
+
+void S() {
+  if (str[i] == 'a' && str[i + 1] == 'a') {
+    i += 2;
+    A();
+    B();
+  } else if (str[i] == '$') {
+    error = 0;
+  } else {
+    error = 1;
+  }
+}
 
 int main() {
   printf("Enter a string: ");
@@ -32,30 +54,6 @@ int main() {
     printf("String is not accepted\n");
 
   return 0;
-}
-
-void S() {
-  if (str[i] == 'a' && str[i + 1] == 'a') {
-    i += 2;
-    A();
-    B();
-  } else {
-    error = 1;
-  }
-}
-
-void B() {
-  if (str[i] == 'b') {
-    i++;
-    B();
-  }
-}
-
-void A() {
-  if (str[i] == 'a' && str[i + 1] == 'a') {
-    i += 2;
-    A();
-  }
 }
 
 /*
