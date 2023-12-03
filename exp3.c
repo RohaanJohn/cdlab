@@ -14,6 +14,8 @@ Grammar:
   S -> aaAB
   A -> aaA | ε
   B -> bB | ε
+
+Min. String it can parse is aa$
 */
 
 void A() {
@@ -31,6 +33,7 @@ void B() {
 }
 
 void S() {
+  // the below if condition not needed if n,m >= 0
   if (str[i] == 'a' && str[i + 1] == 'a') {
     i += 2;
     A();
