@@ -9,7 +9,7 @@ int i = 0, error = 0;
 
 /*
 Grammar:
-  L = {a^2n b^m | n,m >= 0}
+  L = {a^2n b^m | n, m >= 0}
 
   S -> aaAB
   A -> aaA | ε
@@ -31,11 +31,9 @@ void B() {
 }
 
 void S() {
-  if (str[i] == 'a' && str[i + 1] == 'a') {
-    i += 2;
-    A();
-    B();
-  } else if (str[i] == '$') {
+  A();
+  B();
+  if (str[i] == '$') {
     error = 0;
   } else {
     error = 1;
