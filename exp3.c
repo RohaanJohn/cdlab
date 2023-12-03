@@ -65,4 +65,7 @@ String is accepted
 
 Enter a string: ab$
 String is not accepted
+
+Enter a string: $
+String is not accepted
 */
