@@ -13,7 +13,7 @@ void S();
 
 /*
 Grammar:
-  L = {a^2m b^m | n,m > 0}
+  L = {a^2n b^m | n,m > 0}
 
   S -> aaAB
   A -> aaA | ε
