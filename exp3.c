@@ -9,7 +9,7 @@ int i = 0, error = 0;
 
 /*
 Grammar:
-  L = {a^2n b^m | n, m >= 0}
+  L = {a^2n b^m | n > 0, m >= 0}
 
   S -> aaAB
   A -> aaA | ε
@@ -31,10 +31,10 @@ void B() {
 }
 
 void S() {
-  A();
-  B();
-  if (str[i] == '$') {
-    error = 0;
+  if (str[i] == 'a' && str[i + 1] == 'a') {
+    i += 2;
+    A();
+    B();
   } else {
     error = 1;
   }
@@ -64,8 +64,5 @@ Enter a string: aab$
 String is accepted
 
 Enter a string: ab$
-String is not accepted
-
-Enter a string: $
 String is not accepted
 */
